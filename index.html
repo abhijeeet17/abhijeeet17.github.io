@@ -1,223 +1,309 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
-
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abhijeet Sharma — Developer Portfolio</title>
 
-<title>Abhijeet Sharma | Developer Portfolio</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<script>
-tailwind.config = { darkMode: "class" }
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#04040d;
+  --card:#0e0e20;
+  --border:#252545;
+  --cyan:#00f5ff;
+  --violet:#b39dff;
+  --pink:#ff6b9d;
+
+  --text-primary:#f0f2ff;
+  --text-body:#c8cde8;
+  --text-soft:#9ba3cc;
+  --text-muted:#6b73a0;
+}
+
+/* LIGHT MODE VARIABLES */
+
+body.light{
+  --bg:#f7f8ff;
+  --card:#ffffff;
+  --border:#dcdff5;
+
+  --text-primary:#0d1130;
+  --text-body:#2b2f55;
+  --text-soft:#4c5185;
+  --text-muted:#7c81a8;
+
+  --cyan:#00a6b2;
+  --violet:#6a55ff;
+  --pink:#ff4d86;
+}
+
+html{scroll-behavior:smooth}
+
 body{
+background:var(--bg);
+color:var(--text-body);
 font-family:'Outfit',sans-serif;
+line-height:1.7;
+transition:background .4s ease,color .4s ease;
+overflow-x:hidden;
 }
 
-/* gradient mesh background */
+/* THEME BUTTON */
 
-body{
-background:
-radial-gradient(circle at 20% 20%,#0ea5e9 0%,transparent 40%),
-radial-gradient(circle at 80% 30%,#9333ea 0%,transparent 40%),
-radial-gradient(circle at 50% 80%,#ec4899 0%,transparent 40%),
-#020617;
+.theme-btn{
+padding:6px 12px;
+border-radius:6px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text-primary);
+font-size:14px;
+cursor:pointer;
+transition:.25s;
 }
 
-/* glass card */
-
-.glass{
-backdrop-filter:blur(15px);
-background:rgba(255,255,255,0.08);
-border:1px solid rgba(255,255,255,0.15);
+.theme-btn:hover{
+border-color:var(--cyan);
+color:var(--cyan);
 }
 
-/* hover glow */
+/* NAV */
 
-.glow:hover{
-box-shadow:0 0 25px #06b6d4;
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:100;
+padding:18px 0;
+background:rgba(4,4,13,.95);
 }
 
-/* floating animation */
-
-@keyframes float{
-0%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
-100%{transform:translateY(0)}
+.nav-inner{
+max-width:1000px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 32px;
 }
 
-.float{
-animation:float 3s ease-in-out infinite;
+.logo{
+font-family:'Bebas Neue',cursive;
+font-size:24px;
+letter-spacing:3px;
+color:white;
+text-decoration:none;
 }
 
-/* timeline animation */
-
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(30px)}
-to{opacity:1;transform:translateY(0)}
+.logo span{
+color:var(--cyan);
 }
 
-.fadeUp{
-animation:fadeUp 1s ease forwards;
+.nav-links{
+display:flex;
+gap:28px;
+list-style:none;
+}
+
+.nav-links a{
+font-family:'Fira Code',monospace;
+font-size:11px;
+color:var(--text-soft);
+text-decoration:none;
+letter-spacing:1.5px;
+text-transform:uppercase;
+}
+
+.nav-links a:hover{
+color:var(--cyan);
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+padding:110px 0 60px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:0 32px;
+}
+
+.hero-name{
+font-family:'Bebas Neue',cursive;
+font-size:clamp(60px,8vw,105px);
+color:white;
+}
+
+.hero-role{
+font-family:'Fira Code',monospace;
+font-size:13px;
+color:var(--violet);
+margin-top:10px;
+}
+
+.hero-bio{
+margin-top:20px;
+max-width:450px;
+}
+
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:12px 24px;
+border-radius:6px;
+text-decoration:none;
+background:var(--cyan);
+color:black;
+font-weight:500;
+}
+
+.btn:hover{
+opacity:.8;
 }
 
 </style>
-
 </head>
 
-<body class="text-white transition duration-500">
+<body>
 
-<!-- NAVBAR -->
+<nav>
+<div class="nav-inner">
 
-<nav class="flex justify-between items-center px-10 py-6">
+<a class="logo">AS<span>.</span></a>
 
-<h1 id="nameToggle"
-class="text-3xl font-bold cursor-pointer hover:text-cyan-400 transition">
+<ul class="nav-links">
+<li><a href="#projects">Projects</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#certs">Certs</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 
-Abhijeet Sharma
-
-</h1>
-
-<div class="flex gap-6 items-center">
-
-<button onclick="toggleTheme()"
-class="px-4 py-2 border rounded-lg glow">
-
-🌙 / ☀️
-
-</button>
-
-<a href="#projects" class="hover:text-cyan-400">Projects</a>
-<a href="#skills" class="hover:text-cyan-400">Skills</a>
-<a href="#timeline" class="hover:text-cyan-400">Education</a>
-<a href="#github" class="hover:text-cyan-400">GitHub</a>
+<button id="themeToggle" class="theme-btn">☀️</button>
 
 </div>
-
 </nav>
 
-<!-- HERO -->
 
-<section class="text-center mt-20">
+<section class="hero">
+<div class="container">
 
-<h2 class="text-5xl font-bold mb-4">
+<h1 class="hero-name">
+Abhijeet Sharma
+</h1>
 
-Hi I'm <span class="text-cyan-400">Abhijeet</span>
+<div class="hero-role" id="typed-role">
+CS Engineer & ML Builder
+</div>
 
-</h2>
-
-<p class="opacity-80 max-w-xl mx-auto">
-
-Computer Science Engineer building intelligent systems
-with Python, Machine Learning and Data Analytics.
-
+<p class="hero-bio">
+Building intelligent systems with Python, Django & Machine Learning.
+Turning raw data into real-world solutions — from face recognition to predictive analytics.
 </p>
 
-<div class="mt-8 flex justify-center gap-6">
-
-<a href="#projects"
-class="px-6 py-3 bg-cyan-500 rounded-xl glow hover:scale-105 transition">
-
-View Projects
-
-</a>
-
-<a href="https://github.com/abhijeeet17"
-target="_blank"
-class="px-6 py-3 border rounded-xl hover:bg-white hover:text-black transition">
-
-GitHub
-
+<a href="#contact" class="btn">
+Contact Me
 </a>
 
 </div>
-
 </section>
-
-<!-- SKILL SPHERE -->
-
-<section id="skills" class="mt-32 text-center">
-
-<h2 class="text-3xl font-bold mb-10">
-
-3D Skills
-
-</h2>
-
-<div class="flex justify-center">
-
-<div id="skillSphere"></div>
-
-</div>
-
-</section>
-
 <!-- PROJECTS -->
 
-<section id="projects" class="mt-32 px-10">
+<section id="projects" class="section">
+<div class="container">
 
-<h2 class="text-3xl font-bold mb-12 text-center">
+<h2>Projects</h2>
 
-Projects
+<div class="proj-list">
 
-</h2>
+<div class="proj-card">
 
-<div class="grid md:grid-cols-3 gap-8">
+<h3>Smart Attendance Management System</h3>
 
-<div class="glass p-6 rounded-xl hover:scale-105 transition float">
-
-<h3 class="text-xl font-semibold mb-2">
-
-Smart Attendance System
-
-</h3>
-
-<p class="opacity-70">
-
-AI face recognition attendance system using Django & OpenCV.
-
+<p>
+AI-powered attendance system using face recognition with OpenCV and Django.
 </p>
 
 </div>
 
-<div class="glass p-6 rounded-xl hover:scale-105 transition float">
 
-<h3 class="text-xl font-semibold mb-2">
+<div class="proj-card">
 
-EV Dashboard
+<h3>Electric Vehicle Analysis Dashboard</h3>
 
-</h3>
-
-<p class="opacity-70">
-
-Power BI dashboard analyzing electric vehicle trends.
-
+<p>
+Interactive Power BI dashboard analyzing EV adoption trends and performance metrics.
 </p>
 
 </div>
 
-<div class="glass p-6 rounded-xl hover:scale-105 transition float">
 
-<h3 class="text-xl font-semibold mb-2">
+<div class="proj-card">
 
-Disease Prediction
+<h3>Medicare Disease Prediction System</h3>
 
-</h3>
-
-<p class="opacity-70">
-
-Machine learning system predicting health risks.
-
+<p>
+Machine learning models predicting disease risk using patient medical data.
 </p>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills" class="section">
+
+<div class="container">
+
+<h2>Skills</h2>
+
+<div class="skills-grid">
+
+<div class="sk-box">
+<h4>Languages</h4>
+<p>C, C++, Python, Java, SQL</p>
+</div>
+
+<div class="sk-box">
+<h4>Frameworks</h4>
+<p>Django, FastAPI, Streamlit</p>
+</div>
+
+<div class="sk-box">
+<h4>Web</h4>
+<p>HTML5, CSS3, React</p>
+</div>
+
+<div class="sk-box">
+<h4>Databases</h4>
+<p>MySQL, SQLite</p>
+</div>
+
+<div class="sk-box">
+<h4>Tools</h4>
+<p>Git, GitHub, VS Code, Power BI</p>
+</div>
+
+<div class="sk-box">
+<h4>Soft Skills</h4>
+<p>Problem Solving, Teamwork, Adaptability</p>
+</div>
 
 </div>
 
@@ -225,63 +311,58 @@ Machine learning system predicting health risks.
 
 </section>
 
-<!-- TIMELINE -->
 
-<section id="timeline" class="mt-32 px-10">
+<!-- CERTIFICATIONS -->
 
-<h2 class="text-3xl font-bold mb-12 text-center">
+<section id="certs" class="section">
 
-Education Timeline
+<div class="container">
 
-</h2>
+<h2>Certifications</h2>
 
-<div class="border-l border-gray-600 pl-6 space-y-10">
+<ul>
 
-<div class="fadeUp">
+<li>ChatGPT Prompt Engineering — Infosys Springboard</li>
+<li>Cloud Computing — NPTEL</li>
+<li>Data Structures & Algorithms — LPU</li>
+<li>Object Oriented Programming — LPU</li>
 
-<h3 class="text-lg font-semibold">
-
-B.Tech Computer Science
-
-</h3>
-
-<p class="text-gray-400">
-
-Lovely Professional University · 2023 – Present
-
-</p>
+</ul>
 
 </div>
 
-<div class="fadeUp">
+</section>
 
-<h3 class="text-lg font-semibold">
 
-Intermediate
+<!-- EDUCATION -->
 
-</h3>
+<section id="education" class="section">
 
-<p class="text-gray-400">
+<div class="container">
 
-Shivam Convent · 2021 – 2023
+<h2>Education</h2>
 
-</p>
+<div class="edu-item">
+
+<h3>B.Tech — Computer Science & Engineering</h3>
+
+<p>Lovely Professional University · 2023 – Present</p>
 
 </div>
 
-<div class="fadeUp">
+<div class="edu-item">
 
-<h3 class="text-lg font-semibold">
+<h3>Intermediate</h3>
 
-Matriculation
+<p>Shivam Convent · 2021 – 2023</p>
 
-</h3>
+</div>
 
-<p class="text-gray-400">
+<div class="edu-item">
 
-St. Joseph's High School · 2020 – 2021
+<h3>Matriculation</h3>
 
-</p>
+<p>St. Joseph's High School · 2020 – 2021</p>
 
 </div>
 
@@ -289,110 +370,106 @@ St. Joseph's High School · 2020 – 2021
 
 </section>
 
-<!-- GITHUB HEATMAP -->
-
-<section id="github" class="mt-32 text-center">
-
-<h2 class="text-3xl font-bold mb-10">
-
-GitHub Activity
-
-</h2>
-
-<img
-class="mx-auto"
-src="https://ghchart.rshah.org/abhijeeet17"
-/>
-
-</section>
 
 <!-- CONTACT -->
 
-<section class="mt-32 text-center pb-20">
+<section id="contact" class="section">
 
-<h2 class="text-3xl font-bold mb-4">
+<div class="container">
 
-Let's Build Something 🚀
+<h2>Let's Build Something</h2>
 
-</h2>
+<p>Open for internships and collaborations.</p>
 
-<p class="opacity-70 mb-6">
+<br>
 
-Open for internships and collaborations.
-
-</p>
-
-<a href="mailto:sharmaabhijeet317@gmail.com"
-class="px-6 py-3 bg-cyan-500 rounded-xl glow">
-
-Contact Me
-
+<a href="mailto:sharmaabhijeet317@gmail.com" class="btn">
+Email Me
 </a>
+
+</div>
 
 </section>
 
+
+<footer>
+
+<p>
+Crafted with ❤ by Abhijeet Sharma · © 2026
+</p>
+
+</footer>
+
+
+
 <script>
 
-/* DARK MODE */
+/* LIGHT / DARK MODE */
 
-function toggleTheme(){
-document.documentElement.classList.toggle("dark")
+const themeBtn = document.getElementById("themeToggle")
+
+themeBtn.addEventListener("click", () => {
+
+document.body.classList.toggle("light")
+
+if(document.body.classList.contains("light")){
+themeBtn.textContent="🌙"
+}else{
+themeBtn.textContent="☀️"
 }
 
-/* NAME TOGGLE */
-
-const name=document.getElementById("nameToggle")
-
-let toggle=false
-
-name.onclick=()=>{
-toggle=!toggle
-name.textContent=toggle?"AS Developer":"Abhijeet Sharma"
-}
-
-/* THREE JS SPHERE */
-
-const scene=new THREE.Scene()
-
-const camera=new THREE.PerspectiveCamera(
-75,
-400/400,
-0.1,
-1000
-)
-
-const renderer=new THREE.WebGLRenderer({alpha:true})
-renderer.setSize(400,400)
-
-document.getElementById("skillSphere").appendChild(renderer.domElement)
-
-const geometry=new THREE.SphereGeometry(1.5,32,32)
-
-const material=new THREE.MeshBasicMaterial({
-wireframe:true,
-color:0x00ffff
 })
 
-const sphere=new THREE.Mesh(geometry,material)
 
-scene.add(sphere)
 
-camera.position.z=4
+/* TYPED ROLE ANIMATION */
 
-function animate(){
+const roleEl = document.getElementById("typed-role")
 
-requestAnimationFrame(animate)
+const roles = [
+"CS Engineer & ML Builder",
+"Python Developer",
+"Machine Learning Enthusiast",
+"Data Science Explorer"
+]
 
-sphere.rotation.y+=0.01
-sphere.rotation.x+=0.005
+let ri=0
+let ci=0
+let deleting=false
 
-renderer.render(scene,camera)
+function type(){
+
+const word=roles[ri]
+
+if(!deleting){
+
+roleEl.textContent=word.slice(0,++ci)
+
+if(ci===word.length){
+deleting=true
+setTimeout(type,1500)
+return
+}
+
+}else{
+
+roleEl.textContent=word.slice(0,--ci)
+
+if(ci===0){
+deleting=false
+ri=(ri+1)%roles.length
+}
 
 }
 
-animate()
+setTimeout(type,deleting?40:80)
+
+}
+
+type()
 
 </script>
+
 
 </body>
 </html>
