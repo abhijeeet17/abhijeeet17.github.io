@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -26,7 +27,7 @@
   --text-muted:#6b73a0;
 }
 
-/* LIGHT MODE VARIABLES */
+/* LIGHT MODE */
 
 body.light{
   --bg:#f7f8ff;
@@ -54,24 +55,6 @@ transition:background .4s ease,color .4s ease;
 overflow-x:hidden;
 }
 
-/* THEME BUTTON */
-
-.theme-btn{
-padding:6px 12px;
-border-radius:6px;
-border:1px solid var(--border);
-background:var(--card);
-color:var(--text-primary);
-font-size:14px;
-cursor:pointer;
-transition:.25s;
-}
-
-.theme-btn:hover{
-border-color:var(--cyan);
-color:var(--cyan);
-}
-
 /* NAV */
 
 nav{
@@ -82,6 +65,7 @@ right:0;
 z-index:100;
 padding:18px 0;
 background:rgba(4,4,13,.95);
+backdrop-filter:blur(10px);
 }
 
 .nav-inner{
@@ -97,13 +81,11 @@ padding:0 32px;
 font-family:'Bebas Neue',cursive;
 font-size:24px;
 letter-spacing:3px;
-color:white;
+color:var(--text-primary);
 text-decoration:none;
 }
 
-.logo span{
-color:var(--cyan);
-}
+.logo span{color:var(--cyan)}
 
 .nav-links{
 display:flex;
@@ -120,7 +102,23 @@ letter-spacing:1.5px;
 text-transform:uppercase;
 }
 
-.nav-links a:hover{
+.nav-links a:hover{color:var(--cyan)}
+
+/* THEME BUTTON */
+
+.theme-btn{
+padding:6px 12px;
+border-radius:6px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text-primary);
+font-size:14px;
+cursor:pointer;
+transition:.25s;
+}
+
+.theme-btn:hover{
+border-color:var(--cyan);
 color:var(--cyan);
 }
 
@@ -142,7 +140,7 @@ padding:0 32px;
 .hero-name{
 font-family:'Bebas Neue',cursive;
 font-size:clamp(60px,8vw,105px);
-color:white;
+color:var(--text-primary);
 }
 
 .hero-role{
@@ -168,11 +166,95 @@ color:black;
 font-weight:500;
 }
 
-.btn:hover{
-opacity:.8;
+.btn:hover{opacity:.8}
+
+/* SECTIONS */
+
+.section{
+padding:80px 0;
+border-top:1px solid rgba(255,255,255,.05);
+}
+
+.section h2{
+font-family:'Bebas Neue';
+font-size:36px;
+margin-bottom:25px;
+color:var(--text-primary);
+}
+
+/* PROJECT CARDS */
+
+.proj-list{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.proj-card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:10px;
+padding:22px;
+transition:.3s;
+}
+
+.proj-card:hover{
+transform:translateY(-5px);
+border-color:var(--cyan);
+}
+
+/* SKILLS */
+
+.skills-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+
+.sk-box{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:10px;
+padding:20px;
+}
+
+.sk-box h4{
+color:var(--text-primary);
+margin-bottom:6px;
+}
+
+/* EDUCATION */
+
+.edu-item{
+margin-bottom:20px;
+}
+
+/* CONTACT */
+
+footer{
+border-top:1px solid rgba(255,255,255,.05);
+padding:30px;
+text-align:center;
+margin-top:60px;
+font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.skills-grid{
+grid-template-columns:1fr;
+}
+
+.nav-links{
+display:none;
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -195,13 +277,10 @@ opacity:.8;
 </div>
 </nav>
 
-
 <section class="hero">
 <div class="container">
 
-<h1 class="hero-name">
-Abhijeet Sharma
-</h1>
+<h1 class="hero-name">Abhijeet Sharma</h1>
 
 <div class="hero-role" id="typed-role">
 CS Engineer & ML Builder
@@ -218,7 +297,6 @@ Contact Me
 
 </div>
 </section>
-<!-- PROJECTS -->
 
 <section id="projects" class="section">
 <div class="container">
@@ -228,35 +306,18 @@ Contact Me
 <div class="proj-list">
 
 <div class="proj-card">
-
 <h3>Smart Attendance Management System</h3>
-
-<p>
-AI-powered attendance system using face recognition with OpenCV and Django.
-</p>
-
+<p>AI-powered attendance system using face recognition with OpenCV and Django.</p>
 </div>
 
-
 <div class="proj-card">
-
 <h3>Electric Vehicle Analysis Dashboard</h3>
-
-<p>
-Interactive Power BI dashboard analyzing EV adoption trends and performance metrics.
-</p>
-
+<p>Interactive Power BI dashboard analyzing EV adoption trends and performance metrics.</p>
 </div>
 
-
 <div class="proj-card">
-
 <h3>Medicare Disease Prediction System</h3>
-
-<p>
-Machine learning models predicting disease risk using patient medical data.
-</p>
-
+<p>Machine learning models predicting disease risk using patient medical data.</p>
 </div>
 
 </div>
@@ -264,11 +325,7 @@ Machine learning models predicting disease risk using patient medical data.
 </div>
 </section>
 
-
-<!-- SKILLS -->
-
 <section id="skills" class="section">
-
 <div class="container">
 
 <h2>Skills</h2>
@@ -308,103 +365,67 @@ Machine learning models predicting disease risk using patient medical data.
 </div>
 
 </div>
-
 </section>
 
-
-<!-- CERTIFICATIONS -->
-
 <section id="certs" class="section">
-
 <div class="container">
 
 <h2>Certifications</h2>
 
 <ul>
-
 <li>ChatGPT Prompt Engineering — Infosys Springboard</li>
 <li>Cloud Computing — NPTEL</li>
 <li>Data Structures & Algorithms — LPU</li>
 <li>Object Oriented Programming — LPU</li>
-
 </ul>
 
 </div>
-
 </section>
 
-
-<!-- EDUCATION -->
-
 <section id="education" class="section">
-
 <div class="container">
 
 <h2>Education</h2>
 
 <div class="edu-item">
-
 <h3>B.Tech — Computer Science & Engineering</h3>
-
 <p>Lovely Professional University · 2023 – Present</p>
-
 </div>
 
 <div class="edu-item">
-
 <h3>Intermediate</h3>
-
 <p>Shivam Convent · 2021 – 2023</p>
-
 </div>
 
 <div class="edu-item">
-
 <h3>Matriculation</h3>
-
 <p>St. Joseph's High School · 2020 – 2021</p>
-
 </div>
 
 </div>
-
 </section>
 
-
-<!-- CONTACT -->
-
 <section id="contact" class="section">
-
 <div class="container">
 
 <h2>Let's Build Something</h2>
 
 <p>Open for internships and collaborations.</p>
 
-<br>
-
 <a href="mailto:sharmaabhijeet317@gmail.com" class="btn">
 Email Me
 </a>
 
 </div>
-
 </section>
 
-
 <footer>
-
-<p>
-Crafted with ❤ by Abhijeet Sharma · © 2026
-</p>
-
+<p>Crafted with ❤ by Abhijeet Sharma · © 2026</p>
 </footer>
-
-
 
 <script>
 
-/* LIGHT / DARK MODE */
+/* LIGHT MODE */
 
 const themeBtn = document.getElementById("themeToggle")
 
@@ -412,17 +433,13 @@ themeBtn.addEventListener("click", () => {
 
 document.body.classList.toggle("light")
 
-if(document.body.classList.contains("light")){
-themeBtn.textContent="🌙"
-}else{
-themeBtn.textContent="☀️"
-}
+themeBtn.textContent =
+document.body.classList.contains("light") ? "🌙" : "☀️"
 
 })
 
 
-
-/* TYPED ROLE ANIMATION */
+/* TYPED ROLE */
 
 const roleEl = document.getElementById("typed-role")
 
@@ -469,7 +486,6 @@ setTimeout(type,deleting?40:80)
 type()
 
 </script>
-
 
 </body>
 </html>
